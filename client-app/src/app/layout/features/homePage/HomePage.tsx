@@ -14,8 +14,8 @@ export default observer(function HomePage() {
 
           <Header as="h2" inverted content="Welcome to Repackets" />
 
-          <Button as={Link} to="/packets" size="huge" inverted>
-            Take me to the Packets!
+          <Button as={Link} to="/login" size="huge" inverted>
+            Login
           </Button>
         </Container>
       </Segment>

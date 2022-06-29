@@ -9,6 +9,7 @@ import PacketDetails from "./features/details/PacketDetails";
 import TestErrors from "./errors/TestErrors";
 import { ToastContainer } from "react-toastify";
 import NotFound from "./errors/NotFound";
+import LoginForm from "./user/LoginForm";
 
 function App() {
   const location = useLocation();
@@ -31,6 +32,7 @@ function App() {
                   component={PacketForm}
                 />
                 <Route path="/errors" component={TestErrors} />
+                <Route path="/login" component={LoginForm} />
                 <Route component={NotFound} />
               </Switch>
             </Container>
