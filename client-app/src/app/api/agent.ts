@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { history } from "../..";
+import { User, UserFormValues } from "../layout/user/user";
 import { Packet } from "../models/Packet";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
@@ -21,6 +22,7 @@ axios.interceptors.response.use(
     switch (status) {
       case 400:
         toast.error("bad request");
+        console.error(data);
         break;
       case 401:
         toast.error("unauthorised");
@@ -53,8 +55,16 @@ const Packets = {
   update: (packet: Packet) => requests.put(`/packets/${packet.id}`, packet),
   del: (id: string) => requests.delete(`/packets/${id}`),
 };
+
+const Account = {
+  getCurrent: () => requests.get<User>(`/account`),
+  login: (user: UserFormValues) => requests.post<User>(`/account/login`, user),
+  register: (user: UserFormValues) => requests.post<User>(`/account/register`, user),
+};
+
 const agent = {
   Packets,
+  Account,
 };
 
 export default agent;
