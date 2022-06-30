@@ -36,6 +36,18 @@ export default class AccountStore {
     }
   };
 
+  register = async (userFormValues: UserFormValues) => {
+    try {
+      const user = await agent.Account.register(userFormValues);
+      store.commonStore.setToken(user.token);
+      runInAction(() => (this.user = user));
+      history.push("/packets");
+      store.modalStore.closeModal();
+    } catch (error) {
+      throw error;
+    }
+  };
+
   logout = async () => {
     store.commonStore.setToken(null);
     window.localStorage.removeItem("jwt");
