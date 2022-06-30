@@ -1,8 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
-import { Segment, Container, Header, Image, Button } from "semantic-ui-react";
+import { Segment, Container, Header, Image, Button, Icon } from "semantic-ui-react";
 import { useStore } from "../../../stores/store";
-import ModalContainer from "../../common/modal/ModalContainer";
 import LoginForm from "../../user/LoginForm";
 import RegisterForm from "../../user/RegisterForm";
 
@@ -13,7 +12,7 @@ export default observer(function HomePage() {
       <Segment inverted textAlign="center" vertical className="masthead">
         <Container text>
           <Header as="h1" inverted>
-            <Image size="massive" src="/assets/logo.png" alt="logo" style={{ marginBottom: 12 }} />
+            <Icon name="boxes" />
             Packet Tracer
           </Header>
           <Header as="h2" inverted content="Welcome" />

@@ -1,6 +1,4 @@
-import { User, UserFormValues } from "../layout/user/user";
 import { makeAutoObservable, reaction } from "mobx";
-import agent from "../api/agent";
 
 export default class CommonStore {
   error: string | null = null;

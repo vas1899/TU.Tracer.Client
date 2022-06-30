@@ -11,8 +11,8 @@ export default observer(function NavBar() {
     <Menu inverted fixed="top">
       <Container>
         <Menu.Item as={NavLink} to="/" exact>
-          <Icon name="users" circular />
-          Socialfy
+          <Icon name="boxes" circular />
+          Packet Tracer
         </Menu.Item>
         <Menu.Item as={NavLink} to="/packets" name="Packets" />
         <Menu.Item>
