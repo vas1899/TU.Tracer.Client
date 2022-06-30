@@ -13,6 +13,7 @@ import LoginForm from "./user/LoginForm";
 import { useStore } from "../stores/store";
 import { useEffect } from "react";
 import LoadingIndicator from "./LoadingIndicator";
+import ModalContainer from "./common/modal/ModalContainer";
 
 function App() {
   const location = useLocation();
@@ -29,6 +30,7 @@ function App() {
   if (!commonStore.appLoaded) return <LoadingIndicator content="Loading..." />;
   return (
     <>
+      <ModalContainer />
       <Route exact path="/" component={HomePage} />
       <Route
         path={"/(.+)"}

@@ -30,6 +30,7 @@ export default class AccountStore {
       store.commonStore.setToken(user.token);
       runInAction(() => (this.user = user));
       history.push("/packets");
+      store.modalStore.closeModal();
     } catch (error) {
       throw error;
     }
