@@ -38,8 +38,11 @@ axios.interceptors.response.use(
               modalStateErrors.push(data.errors[key]);
             }
           }
+          console.log(data);
           throw modalStateErrors.flat();
         } else {
+          console.log(data);
+
           toast.error(data);
         }
         break;

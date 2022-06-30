@@ -4,16 +4,15 @@ import { Button, Header, Label } from "semantic-ui-react";
 import { useStore } from "../../stores/store";
 import CustomTextInput from "../common/form/CustomTextInput";
 import * as Yup from "yup";
+import ValidationErrors from "../errors/ValidationErrors";
 
 export default observer(function RegisterForm() {
   const { accountStore } = useStore();
   return (
     <Formik
-      initialValues={{ email: "", password: "", displayName: "", username: "", error: "" }}
+      initialValues={{ email: "", password: "", displayName: "", username: "", error: null }}
       onSubmit={(values, { setErrors }) =>
-        accountStore
-          .register(values)
-          .catch((error) => setErrors({ error: "Invalid email or password" }))
+        accountStore.register(values).catch((error) => setErrors({ error }))
       }
       validationSchema={Yup.object({
         email: Yup.string().required(),
@@ -23,18 +22,13 @@ export default observer(function RegisterForm() {
       })}
     >
       {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
-        <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
+        <Form className="ui form error" onSubmit={handleSubmit} autoComplete="off">
           <Header as="h1" content="Register" textAlign="center" color="blue" />
           <CustomTextInput name="email" placeholder="Email" />
           <CustomTextInput name="displayName" placeholder="DisplayName" />
           <CustomTextInput name="username" placeholder="Username" />
           <CustomTextInput name="password" placeholder="Password" type="password" />
-          <ErrorMessage
-            name="error"
-            render={() => (
-              <Label style={{ marginBottom: 10 }} basic color="red" content={errors.error} />
-            )}
-          />
+          <ErrorMessage name="error" render={() => <ValidationErrors errors={errors.error} />} />
           <Button
             disabled={!isValid || !dirty || isSubmitting}
             loading={isSubmitting}
