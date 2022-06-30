@@ -10,9 +10,23 @@ import TestErrors from "./errors/TestErrors";
 import { ToastContainer } from "react-toastify";
 import NotFound from "./errors/NotFound";
 import LoginForm from "./user/LoginForm";
+import { useStore } from "../stores/store";
+import { useEffect } from "react";
+import LoadingIndicator from "./LoadingIndicator";
 
 function App() {
   const location = useLocation();
+  const { commonStore, accountStore } = useStore();
+
+  useEffect(() => {
+    if (commonStore.token) {
+      accountStore.getUser().finally(() => commonStore.setAppLoaded());
+    } else {
+      commonStore.setAppLoaded();
+    }
+  }, [commonStore, accountStore]);
+
+  if (!commonStore.appLoaded) return <LoadingIndicator content="Loading..." />;
   return (
     <>
       <Route exact path="/" component={HomePage} />

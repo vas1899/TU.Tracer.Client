@@ -11,6 +11,15 @@ export default class AccountStore {
     makeAutoObservable(this);
   }
 
+  getUser = async () => {
+    try {
+      const user = await agent.Account.getCurrent();
+      runInAction(() => (this.user = user));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   get isLoggedIn() {
     return !!this.user;
   }

@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { history } from "../..";
 import { User, UserFormValues } from "../layout/user/user";
 import { Packet } from "../models/Packet";
+import { store } from "../stores/store";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
@@ -11,6 +12,12 @@ const sleep = (delay: number) => {
     setTimeout(resolve, delay);
   });
 };
+
+axios.interceptors.request.use((config) => {
+  const token = store.commonStore.token;
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
 
 axios.interceptors.response.use(
   async (response) => {
