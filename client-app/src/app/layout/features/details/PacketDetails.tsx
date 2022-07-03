@@ -8,6 +8,7 @@ import PacketDetailedChat from "./PacketDetailedChat";
 import PacketDetailedHeader from "./PacketDetailedHeader";
 import PacketDetailedInfo from "./PacketDetailedInfo";
 import PacketDetailedSidebar from "./PacketDetailedSidebar";
+import PacketDetailsQRCode from "./PacketDetailsQRCode";
 
 export default observer(function PacketDetails() {
   const { packetStore } = useStore();
@@ -35,6 +36,7 @@ export default observer(function PacketDetails() {
         <PacketDetailedChat />
       </Grid.Column>
       <Grid.Column width={6}>
+        <PacketDetailsQRCode id={packet.id} />
         <PacketDetailedSidebar />
       </Grid.Column>
     </Grid>
