@@ -33,11 +33,11 @@ export default observer(function PacketDetails() {
     <Grid>
       <Grid.Column width={10}>
         <PacketDetailedHeader packet={packet} /> <PacketDetailedInfo packet={packet} />
-        <PacketDetailedChat />
+        {/* <PacketDetailedChat /> */}
       </Grid.Column>
       <Grid.Column width={6}>
         <PacketDetailsQRCode id={packet.id} />
-        <PacketDetailedSidebar />
+        {/* <PacketDetailedSidebar /> */}
       </Grid.Column>
     </Grid>
   );

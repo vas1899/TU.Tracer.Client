@@ -38,9 +38,7 @@ export default observer(function PacketList() {
             </Fragment>
           ))}
         </Grid.Column>
-        <Grid.Column width="6">
-          <PacketFilters />
-        </Grid.Column>
+        <Grid.Column width="6">{/* <PacketFilters /> */}</Grid.Column>
       </Grid>
     </>
   );
